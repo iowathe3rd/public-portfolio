@@ -6,6 +6,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MdArrowOutward } from "react-icons/md";
 import { Content } from "@prismicio/client";
+import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
+import { PrismicImage, PrismicRichText } from "@prismicio/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -133,51 +135,60 @@ export default function ContentList({
   }, [contentImages]);
 
   return (
-    <>
-      <ul
-        ref={component}
-        className="grid border-b border-b-slate-100"
-        onMouseLeave={onMouseLeave}
-      >
-        {items.map((post, index) => (
-          <li
-            key={index}
-            ref={(el) => (itemsRef.current[index] = el)}
-            onMouseEnter={() => onMouseEnter(index)}
-            className="list-item opacity-0"
-          >
-            <a
-              href={`${urlPrefix}/${post.uid}`}
-              className="flex flex-col justify-between border-t border-t-slate-100 py-10  text-slate-200 md:flex-row "
-              aria-label={post.data.title || ""}
-            >
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold">{post.data.title}</span>
-                <div className="flex gap-3 text-zinc-400">
-                  {post.tags.map((tag, index) => (
-                    <span key={index} className="text-lg font-bold">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <span className="ml-auto flex items-center gap-2 text-xl font-medium md:ml-0">
-                {viewMoreText} <MdArrowOutward />
-              </span>
-            </a>
-          </li>
-        ))}
+    // <>
+    //   <ul
+    //     ref={component}
+    //     className="grid border-b border-b-slate-100"
+    //     onMouseLeave={onMouseLeave}
+    //   >
+    //     {items.map((post, index) => (
+    //       <li
+    //         key={index}
+    //         ref={(el) => (itemsRef.current[index] = el)}
+    //         onMouseEnter={() => onMouseEnter(index)}
+    //         className="list-item opacity-0"
+    //       >
+    //         <a
+    //           href={`${urlPrefix}/${post.uid}`}
+    //           className="flex flex-col justify-between border-t border-t-slate-100 py-10  text-slate-200 md:flex-row "
+    //           aria-label={post.data.title || ""}
+    //         >
+    //           <div className="flex flex-col">
+    //             <span className="text-3xl font-bold">{post.data.title}</span>
+    //             <div className="flex gap-3 text-zinc-400">
+    //               {post.tags.map((tag, index) => (
+    //                 <span key={index} className="text-lg font-bold">
+    //                   {tag}
+    //                 </span>
+    //               ))}
+    //             </div>
+    //           </div>
+    //           <span className="ml-auto flex items-center gap-2 text-xl font-medium md:ml-0">
+    //             {viewMoreText} <MdArrowOutward />
+    //           </span>
+    //         </a>
+    //       </li>
+    //     ))}
 
-        {/* Hover element */}
-        <div
-          className="hover-reveal pointer-events-none absolute left-0 top-0 -z-10 h-[320px] w-[220px] rounded-lg bg-cover bg-center opacity-0 transition-[background] duration-300"
-          style={{
-            backgroundImage:
-              currentItem !== null ? `url(${contentImages[currentItem]})` : "",
-          }}
-          ref={revealRef}
-        ></div>
-      </ul>
-    </>
+    //     {/* Hover element */}
+    //     <div
+    //       className="hover-reveal pointer-events-none absolute left-0 top-0 -z-10 h-[320px] w-[220px] rounded-lg bg-cover bg-center opacity-0 transition-[background] duration-300"
+    //       style={{
+    //         backgroundImage:
+    //           currentItem !== null ? `url(${contentImages[currentItem]})` : "",
+    //       }}
+    //       ref={revealRef}
+    //     ></div>
+    //   </ul>
+    // </>
+    <BentoGrid className="mx-auto md:auto-rows-[20rem]">
+      {
+        items.map((value, index)=>{
+            return (
+              <BentoGridItem key={index} title={value.data.title} description={<PrismicRichText field={value.data.short_description}/>} header={<PrismicImage field={value.data.image} />}/>
+            )
+        })
+      }
+    </BentoGrid>
   );
 }
