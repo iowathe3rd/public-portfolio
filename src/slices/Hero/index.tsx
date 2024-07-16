@@ -81,7 +81,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         <LazyLoadedShapes />
         <div className="col-start-1 md:row-start-1 " data-speed=".2">
           <h1
-            className="mb-8 text-[clamp(3rem,20vmin,20rem)] font-extrabold leading-none tracking-tighter"
+            className="mb-8 xl:text-[clamp(3rem,20vmin,12rem)] md:text-[clamp(3rem,20vmin,7rem)] text-[clamp(3rem,20vmin,5rem)] font-extrabold leading-none tracking-tighter"
             aria-label={
               slice.primary.first_name + " " + slice.primary.last_name
             }
