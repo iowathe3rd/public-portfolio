@@ -14,7 +14,7 @@ export default function ContentBody({
   const formattedDate = formatDate(page.data.date);
   return (
     <Bounded as="article">
-      <div className="rounded-2xl border-2 border-slate-800 bg-slate-900 px-4 py-10 md:px-8 md:py-20">
+      <div className="rounded-2xl border-2 border-zinc-800 bg-white/[0.1] px-4 py-10 md:px-8 md:py-20">
         <Heading as="h1">{page.data.title}</Heading>
         <div className="flex gap-4 text-zinc-400">
           {page.tags.map((tag, index) => (

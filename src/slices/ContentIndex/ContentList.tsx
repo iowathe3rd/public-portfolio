@@ -8,6 +8,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { Content } from "@prismicio/client";
 import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
 import { PrismicImage, PrismicRichText } from "@prismicio/react";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -184,8 +185,8 @@ export default function ContentList({
     <BentoGrid className="mx-auto md:auto-rows-[20rem]">
       {
         items.map((value, index)=>{
-            return (
-              <BentoGridItem key={index} title={value.data.title} description={<PrismicRichText field={value.data.short_description}/>} header={<PrismicImage field={value.data.image} />}/>
+            return ( 
+              <BentoGridItem key={index} href={"project/"+value.uid} title={value.data.title} description={<PrismicRichText field={value.data.short_description}/>} header={<PrismicImage field={value.data.image} />}/>
             )
         })
       }
