@@ -182,7 +182,7 @@ export default function ContentList({
     //     ></div>
     //   </ul>
     // </>
-    <BentoGrid className="mx-auto md:auto-rows-[20rem]">
+    <BentoGrid className="md:auto-rows-[20rem]">
       {
         items.map((value, index)=>{
             return ( 
