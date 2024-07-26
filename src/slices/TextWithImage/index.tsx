@@ -25,7 +25,7 @@ const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
         className="w-full h-full rounded-md my-10 md:my-14 lg:my-16"
       />
     </section>
-  );g9t 
+  );
 };
 
 export default TextWithImage;
