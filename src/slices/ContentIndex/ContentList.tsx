@@ -184,10 +184,10 @@ export default function ContentList({
     // </>
     <BentoGrid className="md:auto-rows-[20rem]">
       {
-        items.map((value, index)=>{
-            return ( 
-              <BentoGridItem key={index} href={`${urlPrefix}/`+value.uid} title={value.data.title} description={<PrismicRichText field={value.data.short_description}/>} header={<PrismicImage field={value.data.image} />}/>
-            )
+        items.map((value, index) => {
+          return (
+            <BentoGridItem key={index} href={`${urlPrefix}/` + value.uid} title={value.data.title} description={<PrismicRichText field={value.data.short_description} />} header={<PrismicImage field={value.data.image} width={"100%"} height={"100%"} />} />
+          )
         })
       }
     </BentoGrid>
