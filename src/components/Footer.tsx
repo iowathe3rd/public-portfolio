@@ -31,7 +31,7 @@ export default async function Footer() {
           </p>
         </div>
         <nav className="navigation" aria-label="Footer Navigation">
-          <ul className="flex items-center gap-1">
+          <ul className="md:flex items-center gap-1 hidden">
             {settings.data.nav_item.map(({ link, label }, index) => (
               <React.Fragment key={label}>
                 <li>

@@ -1,5 +1,4 @@
 "use client";
-
 import clsx from "clsx";
 import React, { useState } from "react";
 import { Content, KeyTextField, asLink } from "@prismicio/client";
@@ -9,8 +8,8 @@ import { MdMenu, MdClose } from "react-icons/md";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
 
-export default function NavBar({
-  settings,
+export default async function NavBar({
+  settings
 }: {
   settings: Content.SettingsDocument;
 }) {
@@ -19,7 +18,7 @@ export default function NavBar({
 
   return (
     <nav aria-label="Main navigation">
-      <ul className="flex flex-col justify-between rounded-b-lg bg-slate-50 px-4 py-2 md:m-4 md:flex-row md:items-center md:rounded-xl">
+      <ul className="flex flex-col justify-between rounded-b-lg bg-slate-50 px-4 py-2 md:flex-row mb-20 md:items-center md:rounded-xl">
         <div className="flex items-center justify-between">
           <NameLogo name={settings.data.name} />
           <button

@@ -4,17 +4,26 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 
 import ContentBody from "@/components/ContentBody";
-import { formatDate } from "@/utils/formatDate";
 
-type Params = { uid: string };
+type Params = { uid: string, lang: string };
 
 export default async function Page({ params }: { params: Params }) {
   const client = createClient();
   const page = await client
-    .getByUID("blog_post", params.uid)
+    .getByUID("blog_post", params.uid, {
+      lang: params.lang
+    })
     .catch(() => notFound());
 
-  return <ContentBody page={page} />;
+  const additionalArticles = await client
+    .getAllByType("blog_post", { pageSize: 5 })
+    .catch(() => []);
+
+  const suggestedPosts = additionalArticles.filter(
+    (post) => post.uid !== params.uid
+  );
+  
+  return <ContentBody page={page} additionalArticles={suggestedPosts} />;
 }
 
 export async function generateMetadata({
@@ -24,9 +33,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const client = createClient();
   const page = await client
-    .getByUID("blog_post", params.uid)
+    .getByUID("blog_post", params.uid, {
+      lang: params.lang
+    })
     .catch(() => notFound());
-
+    
   return {
     title: page.data.title,
     description: page.data.meta_description,

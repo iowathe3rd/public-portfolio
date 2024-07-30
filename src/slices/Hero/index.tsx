@@ -1,5 +1,5 @@
 "use client";
-import { ComponentType, ReactNode, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Content, KeyTextField } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
@@ -64,7 +64,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
     return name.split("").map((letter, index) => (
       <span
         key={index}
-        className={`name-animation name-animation-${key}-index inline-block opacity-0 `}
+        className={`name-animation name-animation-${key}-index inline-block opacity-0`}
       >
         {letter}
       </span>
@@ -81,7 +81,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         <LazyLoadedShapes />
         <div className="col-start-1 md:row-start-1 " data-speed=".2">
           <h1
-            className="mb-8 xl:text-[clamp(3rem,20vmin,12rem)] md:text-[clamp(3rem,20vmin,7rem)] text-[clamp(3rem,20vmin,5rem)] font-extrabold leading-none tracking-tighter"
+            className="mb-8 xl:text-[clamp(3rem,20vmin,10rem)] md:text-[clamp(3rem,20vmin,5rem)] text-[clamp(3rem,20vmin,3rem)] font-extrabold leading-none tracking-tighter"
             aria-label={
               slice.primary.first_name + " " + slice.primary.last_name
             }

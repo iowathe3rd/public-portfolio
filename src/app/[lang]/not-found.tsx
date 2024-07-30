@@ -1,7 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-export default function NotFound() {
+export default function NotFound({
+  params: { lang },
+}: {
+  params: { lang: string };
+}) {
   return (
     <div className="flex h-[80vh] flex-col items-center justify-center">
       <h1 className="mx-auto text-[30vmin] font-black text-slate-200">404</h1>

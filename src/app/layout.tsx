@@ -1,7 +1,7 @@
 import "./globals.css";
 import clsx from "clsx";
 import type { Metadata } from "next";
-import { Urbanist } from "next/font/google";
+import { Montserrat as Font } from "next/font/google";
 import { PrismicPreview } from "@prismicio/next";
 import { createClient, repositoryName } from "@/prismicio";
 import { Analytics } from "@vercel/analytics/react"
@@ -9,8 +9,13 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Bounded from "@/components/Bounded"
+import LocaleSwitcher from "@/components/LocaleSwitcher";
 
-const urbanist = Urbanist({ subsets: ["latin"] });
+const font = Font({
+  weight: "400",
+  subsets: ["latin"]
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -32,14 +37,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-zinc-900">
-      <body className={clsx(urbanist.className, "relative min-h-screen")}>
-        <Header />
-        {children}
+      <body className={clsx(font.className, "relative min-h-screen")}>
+        <Bounded as="main" className="md:px-4 mx-auto">
+          <Header />
+          {children}
+          <Footer />
+        </Bounded>
         <div className="background-gradient absolute inset-0 -z-50 max-h-screen" />
         <div className="pointer-events-none absolute inset-0 -z-40 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div>
-        <Footer />
-        <Analytics/>
-        <SpeedInsights/>
+        <Analytics />
+        <SpeedInsights />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>

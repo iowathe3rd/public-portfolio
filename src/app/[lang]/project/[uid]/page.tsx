@@ -4,14 +4,15 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 
 import ContentBody from "@/components/ContentBody";
-import { formatDate } from "@/utils/formatDate";
 
-type Params = { uid: string };
+type Params = { uid: string, lang: string };
 
 export default async function Page({ params }: { params: Params }) {
   const client = createClient();
   const page = await client
-    .getByUID("project", params.uid)
+    .getByUID("project", params.uid, {
+      lang: params.lang,
+    })
     .catch(() => notFound());
 
   return <ContentBody page={page} />;
